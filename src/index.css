@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background-color: hsl(var(--p));
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  width: 50%;
+}
+
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: hsl(var(--p));
+  border-radius: 50%;
+  top: 15px;
+  z-index: 1;
+}
+
+.timeline-left::after {
+  left: -10px;
+}
+
+.timeline-right::after {
+  right: -10px;
+}
+
+.timeline-content {
+  padding: 20px 30px;
+  position: relative;
+}
+
+/* Responsive timeline */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 31px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  
+  .timeline-item::after {
+    left: 21px;
+  }
+  
+  .timeline-left::after, .timeline-right::after {
+    left: 21px;
+  }
+}
