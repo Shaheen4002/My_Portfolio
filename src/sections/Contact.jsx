@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { FaLocationDot } from "react-icons/fa6";
 
@@ -24,9 +24,9 @@ const Contact = () => {
                 <span>shaheenbus4002@gmail.com</span>
               </div>
               <div className="flex items-center gap-4">
-                <FaGithub className="text-xl" />
+                <FaWhatsapp className="text-xl" />
                 <span>
-                  <a>https://github.com/Shaheen4002</a>
+                  {t("+963998842777")}
                 </span>
               </div>
               <div className="flex items-center gap-4">

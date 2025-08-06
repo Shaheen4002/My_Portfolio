@@ -1,6 +1,8 @@
 import { forwardRef, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { CgMenuGridO } from "react-icons/cg";
+import { FaLanguage } from "react-icons/fa";
+import { GrLanguage } from "react-icons/gr";
 
 const Navbar = forwardRef(({ scrollToSection, refs }, ref) => {
   const { t, i18n } = useTranslation();
@@ -70,6 +72,7 @@ const Navbar = forwardRef(({ scrollToSection, refs }, ref) => {
       </div>
       <div className="navbar-end">
         <button className="btn btn-primary" onClick={changeLanguage}>
+          <GrLanguage size={15}/>
           {t("lang")}
         </button>
       </div>
