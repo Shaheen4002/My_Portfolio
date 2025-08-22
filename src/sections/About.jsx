@@ -54,7 +54,7 @@ const About = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="py-12 min-h-screen flex items-center" id="about">
+    <section className="mx-8 py-12 min-h-screen flex items-center" id="about">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold mb-12 text-center">
           {t("About Me")}

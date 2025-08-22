@@ -1,7 +1,8 @@
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaInfoCircle } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 const projects = [
   {
@@ -13,6 +14,10 @@ const projects = [
     description: {
       en: "A full-stack e-commerce platform with React frontend and Laravel backend using MySQL.",
       ar: "منصة تجارة إلكترونية كاملة بواجهة React وواجهة خلفية Laravel باستخدام MySQL.",
+    },
+    details: {
+      en: "an E-commerce store with Authentication system that you can buy products and place orders from it with admin dashboard to manage user's orders and store products",
+      ar: "متجر إلكتروني مع نظام مصادقة يتيح شراء المنتجات وتقديم الطلبات، بالإضافة إلى لوحة تحكم إدارية لإدارة طلبات المستخدمين ومنتجات المتجر.",
     },
     technologies: ["React", "Laravel", "MySQL", "CSS"],
     image: "/src/assets/E-com.png",
@@ -29,6 +34,10 @@ const projects = [
       en: "A personal portfolio website built with React and styled with Tailwind CSS.",
       ar: "موقع شخصي مبني باستخدام React ومصمم ب Tailwind CSS.",
     },
+    details: {
+      en: "my personal website that show who am i, my experience projects and contact info",
+      ar: " موقعي الشخصي الذي يوضح من أنا، خبرتي، مشاريعي ومعلومات الاتصال بي",
+    },
     technologies: ["React", "Tailwind CSS", "JavaScript"],
     image: "/src/assets/portfolio.png",
     githubLink: "https://github.com/Shaheen4002/My_Portfolio",
@@ -37,15 +46,19 @@ const projects = [
   {
     id: 3,
     title: {
-      en: "Blog Platform",
-      ar: "منصة مدونات",
+      en: "Stores making platform",
+      ar: "منصة لتنشئ فيها متجرك الالكتروني",
     },
     description: {
-      en: "A content management system for bloggers with CRUD functionality.",
-      ar: "نظام إدارة محتوى للمدونين يحتوي على وظائف CRUD.",
+      en: "A web platform that let you create your own store (Back-End Only)",
+      ar: "(واجهة خلفية فقط) منصة ويب تتيح لك إنشاء متجرك الخاص.",
     },
-    technologies: ["React", "Express.js", "MUI", "Mongo DB"],
-    image: "/src/assets/Blog.png",
+    details: {
+      en: "A web platform that let you create your own store add products to it , manage your user's orders customize it with your colors you can do all of that without any coding skills",
+      ar: "منصة ويب تتيح لك إنشاء متجرك الخاص، إضافة منتجات إليه، إدارة طلبات المستخدمين، وتخصيصه بألوانك الخاصة، يمكنك القيام بكل ذلك دون الحاجة إلى مهارات برمجية.",
+    },
+    technologies: ["Laravel", "MySql"],
+    image: "/src/assets/store.png",
     githubLink: "#",
     liveDemo: "#",
   },
@@ -59,6 +72,10 @@ const projects = [
       en: "A chat web app that users can create accounts on it and start chatting with each other",
       ar: "تطبيق دردشة ويب يمكن للمستخدمين إنشاء حسابات عليه والبدء في الدردشة مع بعضهم البعض",
     },
+    details: {
+      en: "A chat web app with Authentication system that let the users to create accounts and start chatting with each other also with real time messaging with socket.io server",
+      ar: "تطبيق دردشة ويب مع نظام مصادقة يتيح للمستخدمين إنشاء حسابات وبدء الدردشة مع بعضهم البعض، بالإضافة إلى المراسلة في الوقت الحقيقي باستخدام خادم Socket.io.",
+    },
     technologies: ["React", "Express.js", "Mongo DB", "Tailwind CSS"],
     image: "/src/assets/Chat.png",
     githubLink: "https://github.com/Shaheen4002/Chat-App",
@@ -67,6 +84,9 @@ const projects = [
 ];
 
 const Projects = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
   const notify = (text) =>
     toast.info(text, {
       position: "top-center",
@@ -85,18 +105,22 @@ const Projects = () => {
       notify(t("Live demo will be available soon!"));
     }
   };
-  const handleSrcCodeClick = (e, hasSrc) => {
-    if (!hasSrc) {
-      e.preventDefault();
-      notify(t("source code will be available soon!"));
-    }
+
+  const handleDetailsClick = (project) => {
+    setSelectedProject(project);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedProject(null);
   };
 
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
   return (
-    <section className=" mx-8 py-12 min-h-screen" id="projects">
+    <section className="mx-8 py-12 min-h-screen" id="projects">
       <h2 className="text-3xl font-bold mb-8 text-center">
         {t("My Projects")}
       </h2>
@@ -129,18 +153,13 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-              <div className="card-actions justify-end mt-4">
-                <a
-                  href={project.githubLink === "#" ? "#" : project.githubLink}
-                  onClick={(e) =>
-                    handleSrcCodeClick(e, project.githubLink !== "#")
-                  }
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn-sm btn-ghost gap-2"
+              <div className="card-actions justify-evenly mt-4">
+                <button
+                  onClick={() => handleDetailsClick(project)}
+                  className="btn btn-sm btn-info gap-2"
                 >
-                  <FaGithub /> {t("Source Code")}
-                </a>
+                  <FaInfoCircle /> {t("Details")}
+                </button>
                 <a
                   href={project.liveDemo === "#" ? "#" : project.liveDemo}
                   onClick={(e) =>
@@ -155,6 +174,32 @@ const Projects = () => {
           </div>
         ))}
       </div>
+      {showModal && selectedProject && (
+        <div className="modal modal-open">
+          <div className="modal-box max-w-2xl">
+            <h3 className="font-bold text-2xl mb-4">
+              {selectedProject.title[currentLanguage] ||
+                selectedProject.title.en}
+            </h3>
+            <p className="py-4">
+              {selectedProject.details[currentLanguage] ||
+                selectedProject.details.en}
+            </p>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {selectedProject.technologies.map((tech, index) => (
+                <span key={index} className="badge badge-primary">
+                  {tech}
+                </span>
+              ))}
+            </div>
+            <div className="modal-action">
+              <button className="btn" onClick={closeModal}>
+                {t("Close")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <ToastContainer
         position="top-center"

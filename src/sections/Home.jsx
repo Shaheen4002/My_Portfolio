@@ -15,7 +15,7 @@ const Home = ({ scrollToContact }) => {
   };
 
   return (
-    <section className="flex flex-col-reverse md:flex-row items-center justify-between gap-8 py-12 min-h-[calc(100vh-80px)] px-4 md:px-8">
+    <section className="flex flex-col-reverse md:flex-row items-center justify-between mx-8 gap-8 py-12 min-h-[calc(100vh-80px)] px-4 md:px-8">
       <div className="md:w-1/2">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           {t("Hi, I'm")}{" "}
@@ -50,7 +50,7 @@ const Home = ({ scrollToContact }) => {
           </a>
         </div>
       </div>
-      <div className="md:w-1/2 flex justify-center">
+      <div className="md:w-1/2 flex justify-end">
         <div className="avatar">
           <div className="w-64 h-64 md:w-72 md:h-72 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
             <img

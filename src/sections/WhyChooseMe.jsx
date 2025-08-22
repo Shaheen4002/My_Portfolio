@@ -1,4 +1,4 @@
-import { FaLightbulb, FaCode, FaClock, FaMobile } from "react-icons/fa";
+import { FaRobot, FaCode, FaClock, FaMobile } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
 const WhyChooseMe = () => {
@@ -6,12 +6,12 @@ const WhyChooseMe = () => {
 
   const strengths = [
     {
-      icon: <FaLightbulb className="text-yellow-400" size={30} />,
-      title: t("Innovative Solutions"),
+      icon: <FaRobot className="text-purple-500" size={30} />,
+      title: t("AI-Powered Productivity"),
       description: t(
-        "I create unique, tailored solutions for each project's specific needs"
+        "Leveraging AI tools to enhance development speed, code quality, and problem-solving efficiency"
       ),
-      borderColor: "border-yellow-400", // Matching icon color
+      borderColor: "border-purple-500",
     },
     {
       icon: <FaCode className="text-blue-400" size={30} />,
@@ -30,10 +30,10 @@ const WhyChooseMe = () => {
       borderColor: "border-green-400",
     },
     {
-      icon: <FaMobile className="text-purple-600" size={30} />,
+      icon: <FaMobile className="text-yellow-600" size={30} />,
       title: t("Tech Updates"),
       description: t("Mobile Apps developing service will be available soon"),
-      borderColor: "border-purple-600",
+      borderColor: "border-yellow-600",
     },
   ];
 
