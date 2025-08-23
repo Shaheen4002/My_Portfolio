@@ -1,5 +1,5 @@
 import { TypeAnimation } from "react-type-animation";
-import heroImage from "../assets/photo_2025-07-29_14-25-54.jpg";
+import heroImage from "/photo_2025-07-29_14-25-54.jpg";
 import { useTranslation } from "react-i18next";
 
 const Home = ({ scrollToContact }) => {
